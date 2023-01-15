@@ -1,0 +1,87 @@
+--------------------------This File Contains all the Queries which are written in this project_---------
+query getAllUsers{
+  users{
+    _id
+    firstName
+    quotes{
+      name
+    }
+  }
+
+}
+------------------------
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+-------------------------
+query getQuotebyUser{
+  quote(by:"4232"){
+    name
+    by
+  }
+}
+---------------------------
+query getSingleUser{
+  user(_id:"23131"){
+    _id
+    firstName
+    lastName
+    quotes{
+      name
+    }
+  }
+}
+-----------------------------Dynamic get user by Id query
+query getSingleUser($userId:ID!){
+  user(_id:$userId){
+    _id
+    firstName
+    lastName
+    quotes{
+      name
+    }
+  }
+}
+-------------------------------Dynamic getQuote by user Id query
+query getQuotebyUser($byuser:ID!){
+  quote(by:$byuser){
+    name
+    by
+  }
+}
+-------------------------------Mutation:Create new User on SignUp
+mutation signUpNewUser($NewUser:UserInput!){
+  signUpUser(newUser:$NewUser){
+    _id
+    firstName
+    lastName
+    email
+    
+  }
+}
+
+{
+  "NewUser": {
+    "firstName": "Amit",
+    "lastName": "Srivastav",
+    "email": "amit123@gmail.com",
+    "password": "12345"
+  }
+}
+---------------------------------Mutation:SignInuser and Fetch the token
+mutation SigninUser($signuser:UserSignIn!){
+  signInUser(newSignIn:$signuser){
+    token
+  }
+}
+
+{
+  "signuser": {
+    "email": "rishabh123@gmail.com",
+    "password": "12345"
+  }
+}
+--------------------------------------
